@@ -1,6 +1,5 @@
 """reduce.py"""
 
-from operator import itemgetter
 import sys
 
 current_word = None
@@ -16,14 +15,7 @@ for line in sys.stdin:
     word, count = line.split('\t', 1)
 
     # convert count (currently a string) to int
-    try:
-        count = int(count)
-    except ValueError:
-        # count was not a number, so silently
-        # ignore/discard this line
-
-        continue
-
+    count = int(count)
     # this IF-switch only works because Hadoop sorts map output
     # by key (here: word) before it is passed to the reducer
     if current_word == word:
